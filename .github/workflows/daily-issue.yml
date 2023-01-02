@@ -1,10 +1,10 @@
 name: Create Daily Issue
 on:
   schedule:
-    - cron: '5 * * * *'
+    - cron: '0 * * * *'
 
 jobs:
-  test_schedule:
+  build:
     runs-on: ubuntu-latest
     steps:
       - run:
