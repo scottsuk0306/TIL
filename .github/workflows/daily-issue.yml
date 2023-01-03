@@ -1,15 +1,20 @@
-name: Create Daily Issue
-on:
+name: create daily scrum
+on: 
   schedule:
-    - cron: '0 * * * *'
+  - cron: "0 1 * * 1,2,3,4,5"
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
+  create_scrum:
+    name: scrum 
+    runs-on: self-hosted
     steps:
-      - run:
-          gh issue create --title "Test Issue" --body "Test"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PR_URL: ${{ github.event.pull_request.html_url }}
-       
+
+    - name: Today's date
+      run: echo "TODAY=$(date '+%Y-%m-%d')" >> $GITHUB_ENV
+
+    - name: create new scrum issue
+      uses: act/issue-bot@v3
+      with:
+        labels: "scrum"
+        title: ${{ env.TODAY }} Today I Learned
+        close-previous: true
