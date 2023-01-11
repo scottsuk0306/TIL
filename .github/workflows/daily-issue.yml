@@ -1,20 +1,20 @@
-name: create daily scrum
+name: create today I learned
 on: 
   schedule:
   - cron: "53 0 * * 1,2,3,4,5"
 
 jobs:
-  create_scrum:
-    name: scrum 
-    runs-on: self-hosted
+  create_til:
+    name: TIL 
+    runs-on: ubuntu-latest
     steps:
 
     - name: Today's date
       run: echo "TODAY=$(date '+%Y-%m-%d')" >> $GITHUB_ENV
 
-    - name: create new scrum issue
-      uses: act/issue-bot@v3
+    - name: create new issue
+      uses: imjohnbo/issue-bot@v3
       with:
-        labels: "scrum"
+        labels: "TIL"
         title: ${{ env.TODAY }} Today I Learned
         close-previous: true
