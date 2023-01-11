@@ -15,6 +15,6 @@ jobs:
     - name: create new issue
       uses: imjohnbo/issue-bot@v3
       with:
-        labels: "TIL"
+        labels: "Today I Learned"
         title: ${{ env.TODAY }} Today I Learned
         close-previous: true
